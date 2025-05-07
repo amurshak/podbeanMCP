@@ -1,10 +1,10 @@
 # 🎙️ Podbean MCP Server 🎧
 
-A fun and friendly Model-Content-Provider (MCP) server for supercharging your podcast management with AI!
+An MCP server for managing your podcast through the Podbean API.
 
 ## 🎉 Overview
 
-Hey there, podcast enthusiast! This awesome MCP server connects any MCP-compatible AI assistant to the Podbean API. Whether you're using Claude, GPT, or any other MCP client, you can now manage your podcasts, episodes, and analytics through natural conversation! No more clicking through endless menus - just chat with your AI buddy and get your podcast work done. How cool is that?
+This MCP server connects any MCP-compatible AI assistant to the Podbean API. Whether you're using Claude Desktop, or any other MCP client, you can now manage your podcasts, episodes, and analytics through natural conversation!
 
 ## ✨ Features
 
@@ -60,10 +60,22 @@ Hey there, podcast enthusiast! This awesome MCP server connects any MCP-compatib
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
 
-3. Install all the goodies:
+3. Install the package and its dependencies:
    ```bash
-   uv pip install -r requirements.txt
+   # Using uv (faster)
+   uv pip install -e .
    ```
+
+   Or if you prefer traditional pip:
+   ```bash
+   pip install -e .
+   ```
+   
+   This will install all dependencies from the pyproject.toml file, including:
+   - mcp[cli] (MCP SDK)
+   - httpx (for API requests)
+   - python-dotenv (for environment variables)
+   - pydantic (for data validation)
 
 4. Create a `.env` file with your secret Podbean powers:
    ```

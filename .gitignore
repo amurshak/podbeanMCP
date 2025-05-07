@@ -1,0 +1,27 @@
+# Environment variables
+.env
+.env.*
+
+# Package metadata
+*.egg-info/
+dist/
+build/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# UV specific files
+.uv/
+uv.lock
+
+# IDE files
+.vscode/
+.idea/

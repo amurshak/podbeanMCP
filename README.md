@@ -194,8 +194,10 @@ Got ideas to make this even better? We'd love your help! Fork, code, and send us
 
 ## 📃 License
 
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/).
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+You are free to share and adapt this code for non-commercial purposes, as long as you provide attribution and indicate any changes. For commercial use, please contact amurshak@gmail.com.
+
 
 ## 👏 Acknowledgments
 

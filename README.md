@@ -194,7 +194,8 @@ Got ideas to make this even better? We'd love your help! Fork, code, and send us
 
 ## 📃 License
 
-[Insert your favorite license here - keep it open source if you can!]
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ## 👏 Acknowledgments
 

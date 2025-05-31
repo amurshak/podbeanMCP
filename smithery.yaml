@@ -1,0 +1,24 @@
+# Smithery configuration file: https://smithery.ai/docs/build/project-config
+
+startCommand:
+  type: stdio
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({ command: 'python', args: ['server.py'], env: { PODBEAN_CLIENT_ID: config.clientId, PODBEAN_CLIENT_SECRET: config.clientSecret } })
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - clientId
+      - clientSecret
+    properties:
+      clientId:
+        type: string
+        description: Podbean API client ID
+      clientSecret:
+        type: string
+        description: Podbean API client secret
+  exampleConfig:
+    clientId: your_client_id
+    clientSecret: your_client_secret

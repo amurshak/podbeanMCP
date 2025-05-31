@@ -524,7 +524,7 @@ async def list_podcasts_tool() -> Dict[str, Any]:
     """List all podcasts from your Podbean account"""
     try:
         # Call the podcasts resource
-        podcasts_text = await list_podcasts()
+        podcasts_text = await fetch_podcasts()
         
         # Get tokens for all podcasts to get raw data
         token_data = await get_multiple_podcasts_token()
@@ -987,7 +987,7 @@ async def get_daily_listeners(podcast_id: str, month: str) -> Dict[str, Any]:
         return {"error": str(e)}
 
 # Public Podcast Access
-@mcp.resource("podbean://public/oembed")
+@mcp.resource("podbean://public/oembed/{url}")
 async def get_oembed_resource(url: str) -> str:
     """Get oEmbed information for any Podbean URL"""
     try:
@@ -1090,7 +1090,7 @@ def episode_transcript(episode_id: str) -> str:
 
 
 # File Upload Functionality
-@mcp.resource("podbean://upload/authorize")
+@mcp.resource("podbean://upload/authorize/{podcast_id}/{filename}/{filesize}/{content_type}")
 async def get_upload_authorization(podcast_id: str, filename: str, filesize: int, content_type: str) -> str:
     """Get authorization for file upload to Podbean"""
     try:
@@ -1296,7 +1296,7 @@ async def browse_podcast_categories() -> Dict[str, Any]:
         return {"error": str(e)}
 
 # OAuth Flow for Third-Party Access
-@mcp.resource("podbean://oauth/authorize")
+@mcp.resource("podbean://oauth/authorize/{redirect_uri}/{scope}/{state}")
 def get_oauth_url(redirect_uri: str, scope: str = "podcast_read episode_read", state: str = None) -> str:
     """Generate OAuth authorization URL for third-party access"""
     if not CLIENT_ID:

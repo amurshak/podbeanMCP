@@ -4,7 +4,7 @@ An MCP server for managing your podcast through the Podbean API.
 
 ## 🎉 Overview
 
-This MCP server connects any MCP-compatible AI assistant to the Podbean API. Whether you're using Claude Desktop, or any other MCP client, you can now manage your podcasts, episodes, and analytics through natural conversation!
+This MCP server connects any MCP-compatible AI assistant to the Podbean API. Whether you're using Cline (the IDE MCP Client), Claude Desktop, or any other MCP client, you can now manage your podcasts, episodes, and analytics through natural conversation!
 
 ## ✨ Features
 
@@ -83,21 +83,97 @@ This MCP server connects any MCP-compatible AI assistant to the Podbean API. Whe
    PODBEAN_CLIENT_SECRET=your_client_secret
    ```
 
-## 🏃‍♂️ Running the Server
+## 📝 Configuring in cline_mcp_settings.json
 
-Fire it up! It's as easy as:
-```bash
-python server.py
+The recommended way to use this MCP server is to configure it directly in your cline_mcp_settings.json file. This allows the Cline IDE MCP Client to automatically start the server when needed.
+
+1. Locate your cline_mcp_settings.json file. This file is used by Cline IDE to configure MCP servers. Refer to the Cline IDE documentation for the exact location of this file on your system.
+
+2. Add the Podbean MCP server configuration to the "mcpServers" object:
+
+```json
+{
+  "mcpServers": {
+    "Podbean MCP": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "mcp",
+        "run",
+        "/full/path/to/PodbeanMCP/server.py"
+      ],
+      "env": {
+        "PODBEAN_CLIENT_ID": "your_client_id",
+        "PODBEAN_CLIENT_SECRET": "your_client_secret"
+      }
+    }
+  }
+}
 ```
 
-The server will spring to life on the default port. Magic! ✨
+3. Customize the configuration:
+   - Replace `/full/path/to/PodbeanMCP/server.py` with the absolute path to your server.py file
+   - Replace `your_client_id` and `your_client_secret` with your Podbean API credentials from your .env file
+   - If you're not using `uv`, adjust the command and args accordingly
 
-## 🔌 Connecting to Any MCP Client
+4. Save the file and restart Cline IDE
 
-1. Open your favorite MCP-compatible AI assistant (Claude, GPT, or any other)
-2. Find the MCP server connection settings in your client
-3. Add a new MCP server with the URL where your server is running (e.g., `http://localhost:8000`)
-4. Boom! Your AI assistant now has podcast superpowers! 🦸‍♀️
+> **Important Note**: You do not need to manually run the server with `python server.py` when using this configuration. Cline IDE will automatically start the server when needed and Claude (the AI) will be able to access it.
+
+### Example with Multiple Servers
+
+If you already have other MCP servers in your config, simply add the Podbean MCP server as a new entry:
+
+```json
+{
+  "mcpServers": {
+    "Some Other MCP": {
+      "command": "...",
+      "args": [
+        "..."
+      ]
+    },
+    "Podbean MCP": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "mcp",
+        "run",
+        "/full/path/to/PodbeanMCP/server.py"
+      ],
+      "env": {
+        "PODBEAN_CLIENT_ID": "your_client_id",
+        "PODBEAN_CLIENT_SECRET": "your_client_secret"
+      }
+    }
+  }
+}
+```
+
+## 🧪 Testing Your Installation
+
+After configuring the MCP server in your cline_mcp_settings.json file, you can test if it's working properly by asking Claude to use one of the Podbean MCP tools:
+
+1. **Authenticate with Podbean**:
+   ```
+   Can you authenticate with my Podbean account using the Podbean MCP server?
+   ```
+
+2. **List your podcasts**:
+   ```
+   Can you list my podcasts using the Podbean MCP server?
+   ```
+
+3. **Get episodes for a specific podcast**:
+   ```
+   Can you get the episodes for my podcast with ID "your_podcast_id" using the Podbean MCP server?
+   ```
+
+If Claude successfully executes these commands and returns the expected results, your Podbean MCP server is working correctly!
 
 ## 🔧 Available Tools
 

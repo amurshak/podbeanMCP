@@ -26,10 +26,10 @@ This MCP server connects any MCP-compatible AI assistant to the Podbean API. Whe
 - Update existing episodes when you need a tweak
 - Delete episodes that didn't quite hit the mark
 
-### 📁 File Management
-- Get green lights for file uploads to Podbean
-- Upload your audio masterpieces and eye-catching images
-- Use those uploaded files when creating episodes
+### 📁 File Management (Limited)
+- Get authorization for file uploads to Podbean (presigned URLs)
+- **Note:** Due to STDIO protocol limitations, this server cannot directly upload files
+- The server provides the necessary authorization and file keys, but actual file uploads must be handled externally
 
 ### 📊 Analytics
 - Check out how many downloads your podcast is getting
@@ -196,9 +196,9 @@ If Claude successfully executes these commands and returns the expected results,
 - `update_episode(episode_id, podcast_id, ...)`: Tweak that episode to perfection
 - `delete_episode(episode_id, podcast_id, delete_media)`: Oops! That one needs to go...
 
-### 💾 File Upload Tools
-- `authorize_file_upload(podcast_id, filename, filesize, content_type)`: Get permission to beam files up
-- `upload_file_to_podbean(presigned_url, file_path, content_type, file_key)`: Send your audio masterpieces to the cloud
+### 💾 File Authorization Tools (Limited)
+- `authorize_file_upload(podcast_id, filename, filesize, content_type)`: Get permission to upload files
+- `upload_file_to_podbean(presigned_url, file_path, content_type, file_key)`: **Note: This is a placeholder function that simulates file uploads but doesn't actually transfer files due to STDIO protocol limitations**
 
 ### 🌐 Public Access Tools
 - `get_oembed_data(url)`: Get embeddable goodies for any Podbean URL
@@ -214,7 +214,7 @@ If Claude successfully executes these commands and returns the expected results,
 - `podbean://auth`: Your authentication treasure chest
 - `podbean://podcast/{podcast_id}`: Episode collection for your podcast
 - `podbean://episode/{episode_id}`: All the juicy details about an episode
-- `podbean://upload/authorize`: Your upload permission slip
+- `podbean://upload/authorize`: Your upload permission slip (but not actual uploads)
 - `podbean://categories`: The podcast category encyclopedia
 - `podbean://public/oembed`: Embed-friendly data for any Podbean URL
 - `podbean://oauth/authorize`: Your OAuth permission gateway
@@ -257,9 +257,9 @@ We've got your back when things go sideways! This server comes with super-friend
 - Tried something that doesn't compute? We'll let you know before it breaks 🤓
 - Detailed error messages that actually make sense to humans! 😮‍💨
 
-## 🚧 Limitations (Nobody's Perfect!)
+## 🚧 Limitations
 
-- Want to upload files? You'll need a bit of extra setup for that 📁
+- **File Uploads**: Due to STDIO protocol limitations, this server cannot directly upload files to Podbean. It can obtain the necessary authorization (presigned URLs) and file keys, but the actual file transfer must be handled by external tools or processes.
 - Some fancy features might need a paid Podbean subscription 💳
 - Podbean has rate limits, so don't go too wild with the requests 🚀
 - We can't make your podcast content go viral (that's still on you!) 🌟

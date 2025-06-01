@@ -1,13 +1,16 @@
 # Smithery configuration file: https://smithery.ai/docs/build/project-config
-
 startCommand:
   type: stdio
-  commandFunction:
-    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
-    |-
-    (config) => ({ command: 'python', args: ['server.py'], env: { PODBEAN_CLIENT_ID: config.clientId, PODBEAN_CLIENT_SECRET: config.clientSecret } })
+  commandFunction: |-
+    (config) => ({
+      command: 'python',
+      args: ['server.py'],
+      env: {
+        PODBEAN_CLIENT_ID: config.clientId,
+        PODBEAN_CLIENT_SECRET: config.clientSecret
+      }
+    })
   configSchema:
-    # JSON Schema defining the configuration options for the MCP.
     type: object
     required:
       - clientId
@@ -15,10 +18,19 @@ startCommand:
     properties:
       clientId:
         type: string
-        description: Podbean API client ID
+        title: "Podbean Client ID"
+        description: "Your Podbean API client ID. Get this from your Podbean Developer Dashboard at https://developers.podbean.com/"
+        pattern: "^[a-zA-Z0-9_-]+$"
       clientSecret:
         type: string
-        description: Podbean API client secret
-  exampleConfig:
-    clientId: your_client_id
-    clientSecret: your_client_secret
+        title: "Podbean Client Secret"
+        description: "Your Podbean API client secret. Keep this secure and never share it publicly."
+        format: "password"
+exampleConfig:
+  clientId: "your_client_id_here"
+  clientSecret: "your_client_secret_here"
+
+# Build configuration for Docker deployment
+build:
+  dockerfile: "Dockerfile"
+  dockerBuildPath: "."

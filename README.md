@@ -1,6 +1,9 @@
 # 🎙️ Podbean MCP Server 🎧
 
-An MCP server for managing your podcast through the Podbean API. [![smithery badge](https://smithery.ai/badge/@amurshak/podbeanmcp)](https://smithery.ai/server/@amurshak/podbeanmcp)
+
+[![smithery badge](https://smithery.ai/badge/@amurshak/podbeanmcp)](https://smithery.ai/server/@amurshak/podbeanmcp)
+
+An MCP server for managing your podcast through the Podbean API.
 
 ## 🎉 Overview
 
@@ -47,6 +50,14 @@ This MCP server connects any MCP-compatible AI assistant to the Podbean API. Whe
 - Podbean API credentials (Client ID and Secret - your magical keys to the kingdom)
 
 ## 🚀 Installation
+
+### Installing via Smithery
+
+To install Podbean Podcast Manager for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@amurshak/podbeanmcp):
+
+```bash
+npx -y @smithery/cli install @amurshak/podbeanmcp --client claude
+```
 
 1. Grab the code:
    ```bash

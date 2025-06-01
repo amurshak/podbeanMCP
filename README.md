@@ -1,5 +1,6 @@
 # 🎙️ Podbean MCP Server 🎧
 
+
 [![smithery badge](https://smithery.ai/badge/@amurshak/podbeanmcp)](https://smithery.ai/server/@amurshak/podbeanmcp)
 
 An MCP server for managing your podcast through the Podbean API.
